@@ -6,7 +6,7 @@ from collections.abc import Iterable
 # "Brutal force" algorithm
 # In some cases it will be necessary to go through the entire list,
 # in a very large list it will be inefficient
-def search(array: Iterable, value: Any) -> tuple | None:
+def search(array: Iterable, value: Any) -> tuple[int, int] | None:
     index = 0
     op = 0
     for item in array:
@@ -18,7 +18,8 @@ def search(array: Iterable, value: Any) -> tuple | None:
     return None
 
 
-def binary_search(array: Iterable, value: Any) -> tuple | None:
+def binary_search(
+        array: Iterable, value: Any) -> tuple[int, int] | None:
     low = 0
     high = len(list(array)) - 1
     op = 0
