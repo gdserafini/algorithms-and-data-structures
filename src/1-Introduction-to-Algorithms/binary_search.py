@@ -5,30 +5,27 @@ from collections.abc import Iterable
 # Stupid way to find a value in a list
 # "Brutal force" algorithm
 # In some cases it will be necessary to go through the entire list,
-# in a very large list it will be inefficient
-def search(array: Iterable, value: Any) -> tuple[int, int] | None:
+# in a very large list it will be inefficient - Big O -> O(n)
+def _search(array: Iterable, value: Any) -> float | None:
     index = 0
-    op = 0
     for item in array:
-        op = op + 1
         if item == value:
-            return index, op
+            return index
         else:
             index += 1
     return None
 
 
+# Big O -> O(log(2)n)
 def binary_search(
-        array: Iterable, value: Any) -> tuple[int, int] | None:
+        array: Iterable, value: Any) -> float | None:
     low = 0
     high = len(list(array)) - 1
-    op = 0
     while low <= high:
-        op = op + 1
         mid = (low + high) // 2
         guess = list(array)[mid]
         if guess == value:
-            return mid, op
+            return mid
         if guess > value:
             high = mid - 1
         if guess < value:
@@ -39,7 +36,7 @@ def binary_search(
 def main():
     numbers = [n for n in range(1000000)]
     print('(index, steps)')
-    print(search(numbers, 999999))
+    print(_search(numbers, 999999))
     print(binary_search(numbers, 999999))
 
 
